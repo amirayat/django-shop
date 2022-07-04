@@ -43,6 +43,7 @@ INSTALLED_APPS = [
 
     # project packages
     'coupons.apps.CouponsConfig',
+    'wallets.apps.WalletsConfig'
 ]
 
 MIDDLEWARE = [

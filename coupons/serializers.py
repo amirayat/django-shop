@@ -1,10 +1,11 @@
 from django.utils import timezone
+from django.db.models import F
 from django.utils.translation import gettext_lazy as _
 
 from rest_framework import serializers
-from rest_framework.fields import CurrentUserDefault
 from rest_framework.exceptions import ValidationError, NotFound, NotAuthenticated, NotAcceptable
 
+from wallets.models import Wallet
 from coupons.models import Coupon, CouponUser
 
 
@@ -73,4 +74,5 @@ class CouponValidationSerializer(serializers.Serializer):
         if coupon.expired():
             raise ValidationError(detail="This code is expired.", code=400)
 
+        Wallet.objects.filter(user=user).update(cash=F('cash') + coupon.value)  # increase user wallet cash 
         return CouponUser(coupon=coupon, user=user, redeemed_at=timezone.now()).save()
