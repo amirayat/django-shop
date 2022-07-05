@@ -1,0 +1,28 @@
+version: "3.7"
+
+services:
+
+  web:
+    build: "./app"
+    container_name: "dj_shop"
+    restart: "always"
+    expose:
+      - "8000"
+    volumes:
+      - ./volumes/app:/app
+      - ./volumes/static:/static
+      - ./volumes/media:/media
+    env_file:
+      - "./.env"
+
+  nginx:
+    build: "./nginx"
+    container_name: "web_nginx"
+    restart: "always"
+    ports:
+      - "80:80"
+    volumes:
+      - ./volumes/static:/static
+      - ./volumes/media:/media
+    depends_on:
+      - "web"

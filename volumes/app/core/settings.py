@@ -18,9 +18,9 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-DJANGO_SECRET_KEY    = os.getenv('DJANGO_SECRET_KEY')
-DJANGO_ALLOWED_HOSTS = os.getenv('DJANGO_ALLOWED_HOSTS')
-CSRFORIGIN           = os.getenv('CSRFORIGIN')
+DJANGO_SECRET_KEY   = os.getenv('DJANGO_SECRET_KEY')
+DJANGO_ALLOWED_HOST = os.getenv('DJANGO_ALLOWED_HOST')
+CSRFORIGIN          = os.getenv('CSRFORIGIN')
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -33,9 +33,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = DJANGO_SECRET_KEY
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = [DJANGO_ALLOWED_HOSTS]
+ALLOWED_HOSTS = [DJANGO_ALLOWED_HOST]
 
 CSRF_TRUSTED_ORIGINS = [CSRFORIGIN]
 
